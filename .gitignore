@@ -1,0 +1,40 @@
+# Build Folders
+bin/
+obj/
+
+# User-specific Files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Rider IDE
+.idea/
+.idea/*
+
+# Log Files
+*.log
+
+# Package Folders
+**/packages/
+*.nupkg
+*.snupkg
+
+# Temporary Files
+*.tmp
+*.temp
+*.cache
+*.pdb
+*.swp
+*~
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Dotnet Specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+.fake
