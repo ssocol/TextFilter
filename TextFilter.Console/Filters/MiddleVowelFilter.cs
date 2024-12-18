@@ -18,12 +18,7 @@ namespace TextFilter.Console.Filters
 		{
 			int length = word.Length;
 
-			if (length == 1)
-			{
-				return word;
-			}
-
-			if (length == 2)
+			if (length == 1 || length == 2)
 			{
 				return word;
 			}

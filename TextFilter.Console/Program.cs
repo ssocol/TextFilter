@@ -3,7 +3,7 @@ using TextFilter.Console;
 
 class Program
 {
-	static void Main(string[] args)
+	static async Task Main(string[] args)
 	{
 		var serviceProvider = new ServiceCollection()
 			.AddTextFilterServices()
@@ -11,7 +11,7 @@ class Program
 
 		var textFilterService = serviceProvider.GetRequiredService<TextFilterService>();
 
-		var result = textFilterService.ApplyFilters();
+		var result = await textFilterService.ApplyFilters();
 
 		Console.WriteLine(result);
 	}

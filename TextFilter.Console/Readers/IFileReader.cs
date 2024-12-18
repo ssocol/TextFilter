@@ -2,6 +2,6 @@ namespace TextFilter.Console.Readers
 {
 	public interface IFileReader
 	{
-		public string ReadFile();
+		public Task<string> ReadFileAsync();
 	}
 }

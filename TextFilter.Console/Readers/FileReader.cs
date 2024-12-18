@@ -19,10 +19,10 @@ public class FileReader : IFileReader
 		_filePath = filePath;
 	}
 
-	public string ReadFile()
+	public async Task<string> ReadFileAsync()
 	{
 		using StreamReader reader = new(_filePath);
 
-		return reader.ReadToEnd();
+		return await reader.ReadToEndAsync();
 	}
 }

@@ -7,9 +7,9 @@ public class TextFilterService(IEnumerable<IFilter> filters, IFileReader reader)
 
 	private readonly IFileReader _reader = reader;
 
-	public string ApplyFilters()
+	public async Task<string> ApplyFilters()
 	{
-		var text = _reader.ReadFile();
+		var text = await _reader.ReadFileAsync();
 
 		var words = text
 			.Split([' ', '\r', '\n', '\t'], StringSplitOptions.RemoveEmptyEntries)

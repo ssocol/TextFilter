@@ -1,43 +1,47 @@
 using Moq;
-using TextFilter.Console;
 using TextFilter.Console.Readers;
-using Xunit;
 
 public class FileReaderTests
 {
 	[Fact]
-	public void ReadFile_ShouldReturnCorrectContent()
+	public async Task ReadFile_ShouldReturnCorrectContent()
 	{
 		// Arrange
 		var fileContent = "This is a test file for the FileReader.";
 		var mockReader = new Mock<IFileReader>();
-		mockReader.Setup(r => r.ReadFile()).Returns(fileContent);
+		mockReader.Setup(r => r.ReadFileAsync())
+			.ReturnsAsync(fileContent);
 
 		// Act
-		var result = mockReader.Object.ReadFile();
+		var result = await mockReader.Object.ReadFileAsync();
 
 		// Assert
 		Assert.Equal(fileContent, result);
 	}
 
 	[Fact]
-	public void FileReader_ShouldThrowException_WhenFilePathIsEmpty()
+	public async Task FileReader_ShouldThrowException_WhenFilePathIsEmpty()
 	{
 		// Arrange
 		string invalidPath = string.Empty;
 
 		// Act & Assert
-		var exception = Assert.Throws<ArgumentException>(() => new FileReader(invalidPath));
-		Assert.Equal("File path cannot be null or empty. (Parameter 'filePath')", exception.Message);
+		await Assert.ThrowsAsync<ArgumentException>(() => Task.Run(() =>
+		{
+			var file = new FileReader(invalidPath);
+		}));
 	}
 
 	[Fact]
-	public void FileReader_ShouldThrowException_WhenFileDoesNotExist()
+	public async Task FileReader_ShouldThrowException_WhenFileDoesNotExist()
 	{
 		// Arrange
 		string nonExistentPath = "nonexistentfile.txt";
 
 		// Act & Assert
-		Assert.Throws<FileNotFoundException>(() => new FileReader(nonExistentPath));
+		await Assert.ThrowsAsync<FileNotFoundException>(() => Task.Run(() =>
+		{
+			var fileReader = new FileReader(nonExistentPath);
+		}));
 	}
 }

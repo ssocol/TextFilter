@@ -21,7 +21,7 @@ namespace TextFilter.Console
 				var filters = new List<IFilter>
 				{
 					new MiddleVowelFilter(),
-					new LenghtFilter(Global.DefaultLengthValue),
+					new LenghtFilter(Global.DefaultLength),
 					new LetterFilter(Global.DefaultLetter)
 				};
 
